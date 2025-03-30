@@ -61,7 +61,7 @@ La aplicación estará disponible en `http://localhost:3000`
 - Añadir nuevos productos
 - Filtrado por etiquetas
 
-### añadir nuevos productos:
+### Añadir nuevos productos:
 
 - utiliza el campo image para ingresar el path general /assets/nombre-imagen.jp
 - en nombre-imagen.jpg ingresas el nombre de cualquier imagen que encuentras en la carpeta /public/assets
