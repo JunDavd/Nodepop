@@ -2,6 +2,10 @@ import path from 'node:path'
 import express from 'express'
 import createError from 'http-errors'
 import logger from 'morgan'
+import connectMongoose from './lib/mongooseConnection'
+
+await connectMongoose()
+console.log('connected to mongoDB')
 
 
 const app = express()
@@ -12,17 +16,17 @@ app.engine('html', (await import ('ejs')).__express)
 
 app.locals.appName = 'NodePop'
 
-/**
- * Rutas generales
- */
 
 app.use(logger('dev'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(import.meta.dirname,'public')))
 
+/**
+ * application rutes
+ */
+
 
 app.use((err,req,res,next) => {
-    //manage validation errors
 
     if (err.array){
         err.message = 'invalid request : ' + err.array()

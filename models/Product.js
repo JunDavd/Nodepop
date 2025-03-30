@@ -1,4 +1,3 @@
-import { name } from "ejs";
 import mongoose, {Schema} from "mongoose";
 
 
@@ -6,11 +5,12 @@ const productSchema = new Schema({
     name: String,
     price: Number,
     image: String,
-    tags: [String]
+    tags: [String],
+    owner: {type: Schema.Types.ObjectId, ref: 'User', index: true}
 },{
-    collection: 'productos'
+    collection: 'products'
 })
 
-const Product = mongoose.model('Producto', productSchema)
+const Product = mongoose.model('Products', productSchema)
 
 export default Product
