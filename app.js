@@ -25,7 +25,7 @@ app.use(logger('dev'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(import.meta.dirname,'public')))
 
-//general uses
+
 /**
  * application rutes
 */
@@ -35,9 +35,9 @@ app.get('/',homeController.index)
 app.get('/login',loginController.index)
 app.post('/login',loginController.loginUserPost)
 app.get('/logout',loginController.logout)
-app.get('/cart/new-product')
-app.post('/cart/new-product')
-app.get('/cart/delete/:productId')
+app.get('/products/new')
+app.post('/products/new')
+app.get('/products/delete/:productId')
 
 
 app.use((err,req,res,next) => {
