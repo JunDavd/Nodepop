@@ -6,7 +6,7 @@ import connectMongoose from './lib/connectMongoose.js'
 import * as homeController from './controllers/homeController.js'
 import * as sessionManager from './lib/sessionManager.js'
 import * as loginController from './controllers/loginController.js'
-
+import * as productController from './controllers/productsController.js'
 
 await connectMongoose()
 console.log('connected to mongoDB')
@@ -35,9 +35,9 @@ app.get('/',homeController.index)
 app.get('/login',loginController.index)
 app.post('/login',loginController.loginUserPost)
 app.get('/logout',loginController.logout)
-app.get('/products/new')
-app.post('/products/new')
-app.get('/products/delete/:productId')
+app.get('/products/new', sessionManager.guard,productController.index )
+app.post('/products/new',sessionManager.guard,productController.addProduct)
+app.get('/products/delete/:productId', sessionManager.guard, productController.deleteProdcut)
 
 
 app.use((err,req,res,next) => {

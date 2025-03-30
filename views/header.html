@@ -21,7 +21,11 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/products/new">Add Product</a>
+              <% if(!session.userId) { %>
+                <a class="nav-link active" href="/login">Add Product</a>
+                <% } else { %>
+                  <a class="nav-link active" href="/products/new">Add Product</a>
+                  <% } %>
             </li>
           </ul>
           <% if (!session.userId) { %>
