@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
      "dev": "cross-env PORT=3000 NODEAPP_ENV=development nodemon server.js",
-    "start": "cross-env NODEAPP_ENV=production node server.js"
+    "start": "cross-env NODEAPP_ENV=production node server.js",
+    "initDB": "node initDB.js"
   },
   "author": "",
   "license": "ISC",

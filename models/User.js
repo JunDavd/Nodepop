@@ -1,9 +1,10 @@
 import mongoose, { Schema } from "mongoose"
+import bcrypt from 'bcrypt'
 
 
 const userSchema = new Schema({
     name: String,
-    email: String,
+    email: {type: String, unique: true},
     age: Number,
     address: {
         city: {type:  String, lowercase: true, trim: true},
@@ -14,6 +15,17 @@ const userSchema = new Schema({
 },{
     collection: 'users'
 })
+
+//method to hash password of the model
+userSchema.statics.hashPassword = (clearPassword) => {
+    return bcrypt.hash(clearPassword, 9)
+}
+
+//method of the instance of User.
+//compare clearpasswors with the hashed password of the instance
+userSchema.methods.comparePassword = function(clearPassword){
+    return bcrypt.compare(clearPassword, this.passWord)
+}
 
 const User = mongoose.model('User', userSchema)
 

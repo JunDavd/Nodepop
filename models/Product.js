@@ -1,6 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 
-
+//schema od the product, include index
 const productSchema = new Schema({
     name: String,
     price: Number,
