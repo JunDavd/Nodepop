@@ -30,13 +30,13 @@ async function initProducts() {
 
     const insertProducts = await Product.insertMany([
         {name:'cellphone', price: 120,image:'/assets/cellphone.jpg',tags:['mobile'],owner: userOne._id},
-        {name:'desktop', price: 1500,image:'/assets/desktop.jpg',tags:['tecnology','work','computer-parts'],owner: userOne._id},
-        {name:'keyboard', price: 150,image:'/assets/keyboard.jpg',tags:['tecnology','work','computer-parts'],owner: userTwo._id},
-        {name:'mouse pad', price: 200,image:'/assets/mouse-pad.jpg',tags:['tecnology','work','computer-parts'],owner: userTwo._id},
+        {name:'desktop', price: 1500,image:'/assets/desktop.jpg',tags:['tecnology','work'],owner: userOne._id},
+        {name:'keyboard', price: 150,image:'/assets/keyboard.jpg',tags:['tecnology','work'],owner: userTwo._id},
+        {name:'mouse pad', price: 200,image:'/assets/mouse-pad.jpg',tags:['tecnology','work'],owner: userTwo._id},
         {name:'motor v8', price: 5000,image:'/assets/v8-motor.jpg',tags:['motor'],owner: userOne._id},
-        {name:'papple visions', price: 2500,image:'/assets/papple-visions.jpg',tags:['tecnology','entertainment','computer-parts','work'],owner: userOne._id},
-        {name:'pc gaming', price: 3500,image:'/assets/pc-gaming.jpg',tags:['tecnology','entertainment'],owner: userTwo._id},
-        {name:'t-shirt', price: 25,image:'/assets/tshirt.jpg',tags:['fashion','lifestyle','men'],owner: userTwo._id},
+        {name:'papple visions', price: 2500,image:'/assets/papple-visions.jpg',tags:['tecnology','work'],owner: userOne._id},
+        {name:'pc gaming', price: 3500,image:'/assets/pc-gaming.jpg',tags:['tecnology'],owner: userTwo._id},
+        {name:'t-shirt', price: 25,image:'/assets/tshirt.jpg',tags:['lifestyle'],owner: userTwo._id},
     ])
     console.log(`Products: ${insertProducts.length} items inserted`)
 }
