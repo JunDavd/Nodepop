@@ -1,6 +1,6 @@
 # NodePop
 
-Aplicación de compra/venta de artículos de segunda mano.
+Aplicación de venta de artículos de segunda mano.
 
 ## Requisitos
 
