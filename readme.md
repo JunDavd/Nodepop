@@ -261,6 +261,6 @@ Formato típico de error:
 ## Subida de imágenes
 
 - Usar campo `image` en multipart/form-data.
-- Las imágenes se almacenan en `/public/img-products`.
+- Las imágenes se almacenan en `/public/img-products` carpeta creada dinamicamente por multer cuando se sube la primera imagen.
 
 
