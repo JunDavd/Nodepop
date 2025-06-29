@@ -1,7 +1,6 @@
 <%- include('header.html') %>
 
 <div class="container">
-  <p class="text-sm-start">userId <%- session.userId %></p>
   <div></div>
   <div class="text-center">
     <% if (!session.userId){%>
@@ -87,5 +86,6 @@
     <% } %>
   </div>
 </div>
+<p class="text-sm-start">userId:<%- session.userId %></p>
 
 <%- include('footer.html') %>

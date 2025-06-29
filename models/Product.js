@@ -21,7 +21,7 @@ productSchema.statics.list = function (filter, limit, skip, sort, fields) {
   query.limit(limit);
   query.skip(skip);
   query.sort(sort);
-  query.select(fileds);
+  query.select(fields);
   return query.exec();
 };
 

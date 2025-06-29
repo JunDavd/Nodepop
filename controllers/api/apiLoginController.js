@@ -7,7 +7,7 @@ export async function loginJWT(req, res, next) {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
     // if not user or password doesnt match----->error
-    if (!user || !(await User.comparePassword(password))) {
+    if (!user || !(await user.comparePassword(password))) {
       next(createError(401, "invalid credentials"));
       return;
     }
