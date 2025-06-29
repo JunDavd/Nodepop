@@ -9,9 +9,9 @@ export async function list(req, res, next) {
     //filters
     //http://localhost:3000/api/products?name=cellphone
     const filterName = req.query.name;
-    //http://localhost:3000/api/products?price=33
+    //http://localhost:3000/api/products?price=120
     const filterPrice = req.query.price;
-    //http://localhost:3000/api/prodcuts?tags=33
+    //http://localhost:3000/api/prodcuts?tags=work
     const filterTags = req.query.tags;
 
     //paginations

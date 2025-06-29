@@ -27,8 +27,8 @@ async function initProducts() {
 
   //find users to asign their ownership of a product
   const [userOne, userTwo] = await Promise.all([
-    User.findOne({ email: "userOne@mail.com" }),
-    User.findOne({ email: "userTwo@mail.com" }),
+    User.findOne({ email: "admin@example.com" }),
+    User.findOne({ email: "user1@example.com" }),
   ]);
 
   //create products
@@ -103,17 +103,17 @@ async function initUsers() {
   const insertUsers = await User.insertMany([
     {
       name: "Roberto",
-      email: "userOne@mail.com",
+      email: "admin@example.com",
       age: 35,
       address: { city: "Bogotá", postalCode: "110141" },
-      passWord: await User.hashPassword("01234"),
+      passWord: await User.hashPassword("1234"),
     },
     {
       name: "Juan",
-      email: "userTwo@mail.com",
+      email: "user1@example.com",
       age: 28,
       address: { city: "Bogotá", postalCode: "110161" },
-      passWord: await User.hashPassword("01234"),
+      passWord: await User.hashPassword("1234"),
     },
   ]);
   console.log(`Users: ${insertUsers.length} users inserted`);
