@@ -1,27 +1,33 @@
 <%- include('header.html') %>
-
 <div class="container">
-    <h1>
-        login
-    </h1>
-    <form method="POST">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input 
-            type="email" 
-            name="email" 
-            class="form-control" 
-            id="input-email" 
-            value="<%= email %>"
-            >
-        </div>
-        <div class="mb-3">
-            <label for="input-password" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" id="input-password">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <p><%= error %></p>
-    </form>
-</div>               
+  <h1><%= __('login') %></h1>
+  <form method="POST">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label"
+        ><%= __('Email address') %>
+      </label>
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        id="input-email"
+        value="<%= email %>"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="input-password" class="form-label"
+        ><%= __('Password') %>
+      </label>
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        id="input-password"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary"><%= __('Submit') %></button>
+    <p><%= error %></p>
+  </form>
+</div>
 
 <%- include('footer.html') %>

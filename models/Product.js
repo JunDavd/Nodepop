@@ -1,16 +1,30 @@
-import mongoose, {Schema} from "mongoose";
+import { name } from "ejs";
+import mongoose, { Schema } from "mongoose";
 
 //schema od the product, include index
-const productSchema = new Schema({
+const productSchema = new Schema(
+  {
+    // name: { type: String, unique: true },
     name: String,
     price: Number,
     image: String,
     tags: [String],
-    owner: {type: Schema.Types.ObjectId, ref: 'User', index: true}
-},{
-    collection: 'products'
-})
+    owner: { type: Schema.Types.ObjectId, ref: "User", index: true },
+  },
+  {
+    collection: "products",
+  }
+);
 
-const Product = mongoose.model('Products', productSchema)
+productSchema.statics.list = function (filter, limit, skip, sort, fields) {
+  const query = Product.find(filter);
+  query.limit(limit);
+  query.skip(skip);
+  query.sort(sort);
+  query.select(fileds);
+  return query.exec();
+};
 
-export default Product
+const Product = mongoose.model("Products", productSchema);
+
+export default Product;

@@ -6,6 +6,13 @@ import * as homeController from "./controllers/homeController.js";
 import * as sessionManager from "./lib/sessionManager.js";
 import * as loginController from "./controllers/loginController.js";
 import * as productController from "./controllers/productsController.js";
+import * as apiLoginController from "./controllers/api/apiLoginController.js";
+import * as apiProductsController from "./controllers/api/apiProductsController.js";
+import * as localeController from "./controllers/localeController.js";
+import cookieParser from "cookie-parser";
+import * as jwtAuth from "./lib/jwtAuthMiddleware.js";
+import upload from "./lib/uploadConfigure.js";
+import i18n from "./lib/i18nConfigure.js";
 
 await connectMongoose();
 console.log("connected to mongoDB");
@@ -31,37 +38,49 @@ app.use(express.static(path.join(import.meta.dirname, "public")));
  */
 
 app.post("/api/login", apiLoginController.loginJWT);
-app.get("/api/agents", jwtAuth.guard, apiAgentsController.list);
-app.get("/api/agents/:agentId", jwtAuth.guard, apiAgentsController.getOne);
-app.post(
-  "/api/agents",
+app.get("/api/products", jwtAuth.guard, apiProductsController.list);
+app.get(
+  "/api/products/:productId",
   jwtAuth.guard,
-  upload.single("avatar"),
-  apiAgentsController.newAgent
+  apiProductsController.getOne
+);
+app.post(
+  "/api/products",
+  jwtAuth.guard,
+  upload.single("image"),
+  apiProductsController.newProduct
 );
 app.put(
-  "/api/agents/:agentId",
-  upload.single("avatar"),
+  "/api/products/:productId",
+  upload.single("image"),
   jwtAuth.guard,
-  apiAgentsController.upDate
+  apiProductsController.upDate
 );
 app.delete(
-  "/api/agents/:agentId",
+  "/api/products/:productId",
   jwtAuth.guard,
-  apiAgentsController.deleteAgent
+  apiProductsController.deleteProduct
 );
 
 /**
  * application rutes
  */
+app.use(cookieParser());
 app.use(sessionManager.middleware);
 app.use(sessionManager.useSessionInViews);
+app.use(i18n.init);
+app.get("/change-locale/:locale", localeController.changeLocale);
 app.get("/", homeController.index);
 app.get("/login", loginController.index);
 app.post("/login", loginController.loginUserPost);
 app.get("/logout", loginController.logout);
 app.get("/products/new", sessionManager.guard, productController.index);
-app.post("/products/new", sessionManager.guard, productController.addProduct);
+app.post(
+  "/products/new",
+  sessionManager.guard,
+  upload.single("image"),
+  productController.addProduct
+);
 app.get(
   "/products/delete/:productId",
   sessionManager.guard,

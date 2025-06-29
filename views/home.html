@@ -1,66 +1,91 @@
 <%- include('header.html') %>
 
-<div class="container ">
-    <p class="text-sm-start">userId <%- session.userId %></p>
-    <div>
-        
+<div class="container">
+  <p class="text-sm-start">userId <%- session.userId %></p>
+  <div></div>
+  <div class="text-center">
+    <% if (!session.userId){%>
+    <p>
+      <a href="/login"><%= __('login to access your products') %></a>
+    </p>
+    <h2 class="title mb-4"><%= __('Products') %></h2>
+    <div id="carouselExample" class="carousel slide">
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active bg-black">
+          <img src="/img-products/mouse-pad.jpg" class="w-50" alt="..." />
+        </div>
+        <div class="carousel-item bg-black">
+          <img src="/img-products/v8-motor.jpg" class="w-50" alt="..." />
+        </div>
+        <div class="carousel-item bg-black">
+          <img src="/img-products/papple-visions.jpg" class="w-50" alt="..." />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <div class="text-center">
-        <% if (!session.userId){%>
-            <p>
-                <a href="/login">login to access your products</a>
-            </p>
-            <h2 class="title mb-4">Products</h2>
-            <div id="carouselExample" class="carousel slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active bg-black">
-                        <img src="/assets/mouse-pad.jpg" class="w-50" alt="...">
-                    </div>
-                  <div class="carousel-item bg-black">
-                    <img src="/assets/v8-motor.jpg" class="w-50" alt="...">
-                  </div>
-                  <div class="carousel-item bg-black">
-                    <img src="/assets/papple-visions.jpg" class="w-50" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            <!-- <div class="row justify-content-center">
-                
-            </div> -->
-
-        <% } else {%>
-            <h2 class="title mb-4">Products</h2>
-            <div class="row justify-content-center">
-                <% products.forEach(product => { %>
-                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100" style="width: 18rem;">
-                            <img src=<%= product.image %> class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title"><%= product.name %></h5>
-                              <p class="card-text">$<%= product.price %></p>
-                              <p class="card-text"><%= product.tags %></p>
-                              <a href="/products/delete/<%= product._id %>" class="btn btn-primary">Delete Product</a>
-                            </div>
-                          </div>
-                    </div>
-               <% }) %>
-            </div>
-        <% } %>
+    <% } else {%>
+    <h2 class="title mb-4"><%= __('Products') %></h2>
+    <div class="row justify-content-center">
+      <% products.forEach(product => { %>
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100" style="width: 18rem">
+          <img src=<%= product.image?`/img-products/${product.image}`:
+          'https://placehold.co/100' %> class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text">$<%= product.price %></p>
+            <p class="card-text"><%= product.tags %></p>
+            <a
+              href="/products/delete/<%= product._id %>"
+              class="btn btn-primary"
+              ><%= __('Delete Product') %></a
+            >
+          </div>
+        </div>
+      </div>
+      <% }) %>
     </div>
+    <% } %>
+  </div>
 </div>
-
 
 <%- include('footer.html') %>
