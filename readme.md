@@ -50,10 +50,11 @@ La aplicación estará disponible en `http://localhost:3000`
 
 - `models/`: Modelos de datos para MongoDB
 - `controllers/`: Controladores de la aplicación
-- `controller/api`: controladores del API
+  - `controller/api`: controladores del API
 - `views/`: Plantillas HTML para las vistas
 - `public/`: Archivos estáticos (imágenes, CSS, etc.)
-  - `public/assets/`: Imágenes de los productos
+  - `public/assets/`: Imágenes de los productos para las imagenes de prueba en initDB.js
+  - `public/img-products/`: Imgenes de los productos subidos
 
 ## Funcionalidades
 
