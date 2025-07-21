@@ -109,10 +109,17 @@ async function initUsers() {
       passWord: await User.hashPassword("1234"),
     },
     {
-      name: "Juan",
+      name: "Miguel",
       email: "user1@example.com",
-      age: 28,
+      age: 23,
       address: { city: "Bogotá", postalCode: "110161" },
+      passWord: await User.hashPassword("1234"),
+    },
+    {
+      name: "Juan",
+      email: "jdruiz008@gmail.com",
+      age: 28,
+      address: { city: "Bogotá", postalCode: "110166" },
       passWord: await User.hashPassword("1234"),
     },
   ]);
