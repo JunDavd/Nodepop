@@ -19,5 +19,11 @@
 	"Lifestyle": "Lifestyle",
 	"Mobile": "Mobile",
 	"Motor": "Motor",
-	"submit": "submit"
+	"submit": "submit",
+	"mobile": "mobile",
+	"tecnology,work": "tecnology,work",
+	"motor": "motor",
+	"work,lifestyle,mobile": "work,lifestyle,mobile",
+	"work": "work",
+	"lifestyle": "lifestyle"
 }
