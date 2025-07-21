@@ -20,11 +20,9 @@ export async function loginUserPost(req, res, next) {
     }
     req.session.userId = foundUser.id;
 
-    //Enviar email al usuario
-
-    await foundUser.sendEmail("Bienvenido", "Bienvenido a Nodeapp.");
-
     res.redirect(redir ? redir : "/");
+    //Enviar email al usuario
+    foundUser.sendEmail("Bienvenido", "Bienvenido a Nodeapp.");
   } catch (error) {
     next(error);
   }
