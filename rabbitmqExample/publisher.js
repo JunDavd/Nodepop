@@ -10,4 +10,14 @@ const channel = await connection.createChannel();
 await channel.assertExchange(EXCHANGE_NAME, "direct", {
   durable: true,
 });
-//Publicar un mensaje
+
+while (true) {
+  //Publicar un mensaje
+  const message = {
+    tarea: "enviar un email" + "-" + Date.now(),
+  };
+  console.log(`Message sendt to queque at: ${Date.now()}`);
+
+  channel.publish(EXCHANGE_NAME, "*", Buffer.from(JSON.stringify(message)));
+  await new Promise((resolve) => setTimeout(resolve, 100));
+}
