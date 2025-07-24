@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import { io } from "../webSocketServer.js";
 
 export function index(req, res, next) {
   res.locals.error = "";
@@ -29,11 +30,13 @@ export async function loginUserPost(req, res, next) {
 }
 
 export function logout(req, res, next) {
+  const oldeSessionId = req.session.id;
   req.session.regenerate((err) => {
     if (err) {
       next(err);
       return;
     }
+    io.in(oldeSessionId).disconnectSockets();
     res.redirect("/");
   });
 }
