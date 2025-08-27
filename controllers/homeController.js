@@ -9,10 +9,12 @@ export async function index(req, res, next) {
     res.render("home");
 
     setTimeout(() => {
-      console.log(
-        `sending welcome message to user with sessionId: ${req.session.id}`
-      );
-      io.to(req.session.id).emit("server-message", `welcome user ${userId}`);
+      if (userId) {
+        console.log(
+          `sending welcome message to user with sessionId: ${req.session.id}`
+        );
+        io.to(req.session.id).emit("server-message", `welcome user ${userId}`);
+      }
     }, 5000);
   } catch (error) {
     next(error);
